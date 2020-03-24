@@ -1,82 +1,24 @@
-# matrix_mul sample
-matrix_mul is a simple program that multiplies together two large matrices and verifies the results. 
-This program is implemented using three ways: 
-    1. C++ and SYCL language;
-    2. C++ and OpenMP (Linux* only);
-    3. C++ and MKL;
-  
-| Optimized for                       | Description
-|:---                               |:---
-| OS                                | Linux* Ubuntu* 18.04, Windows 10*
-| Hardware                          | Skylake with GEN9 or newer
-| Software                          | Intel&reg; oneAPI DPC++ Compiler beta, Intel&reg; MKL, Intel&reg; C/C++ Compiler beta 
-| What you will learn               | Offloads computations on 2D arrays to GPU using Intel DPC++, OpenMP and Intel MKL
-| Time to complete                  | 15 minutes  
+# Matrix Multiplication
 
-## Key implementation details
-SYCL implementation explained. 
-OpenMP offload implementation explained. 
-MKL implementation explained.
+## Scripts
 
-## License  
-This code sample is licensed under MIT license. 
+Before running: `TARGET` variable is set for all scripts except `q`.
+Changing the value of this variable will run different source file.
+The value should be either `dpcpp` or `mkl` for now.
 
-## How to Build for DPCPP and SYCL 
+* `buildNrun.sh`
+* `build.sh`
+  Replace `%%SIZE%%` with the intended matrix size. Then `make` the source file.
+* `run.sh`
+* `q`
 
-### on Linux  
-   * Build the program using Make  
-    cd matrix_mul &&  
-    make all  
+## Source files
 
-   * Run the program  
-    make run  
-
-   * Clean the program  
-    make clean 
-
-### on Windows
-The OpenMP offload target is not supported on Windows yet. 
-
-#### Command Line using MSBuild
-   * MSBuild matrix_mul.sln /t:Rebuild /p:Configuration="release"  
-
-#### Command Line using nmake
-   Build matrix_mul MKL version
-   * nmake -f Makefile.win build_mkl  
-   * nmake -f Makefile.win run_mkl  
-
-   Build matrix_mul DPCPP version
-   * nmake -f Makefile.win build_dpcpp  
-   * nmake -f Makefile.win run_dpcpp  
-
-#### Visual Studio IDE
-   * Open Visual Studio 2017     
-   * Select Menu "File > Open > Project/Solution", find "matrix_mul" folder and select "matrix_mul.sln" 
-   * Select Menu "Project > Build" to build the selected configuration
-   * Select Menu "Debug > Start Without Debugging" to run the program
-
-## How to Build for OpenMP
-
-### on Linux  
-   * Build the program using Make  
-    cd matrix_mul &&  
-    make build_omp  
-
-   * Run the program  
-    make run_omp  
-
-   * Clean the program  
-    make clean
-
-## How to Build for MKL
-
-### on Linux  
-   * Build the program using Make  
-    cd matrix_mul &&  
-    make build_mkl  
-
-   * Run the program  
-    make run_mkl  
-
-   * Clean the program  
-    make clean
+* `matrix_mul_dpcpp.cpp`
+    Original Data Pararell C++ (DPCPP) version.
+* `matrix_mul_dpcpp.cpp.template`
+    Generic version with `%%SIZE%%` to be replaced.
+* `matrix_mul_mkl.cpp`
+    Original Math Kernel Library (MKL) version.
+* `matrix_mul_mkl.cpp.template`
+    Generic version with `%%SIZE%%` to be replaced.
