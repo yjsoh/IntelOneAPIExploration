@@ -1,0 +1,12 @@
+# Ignore binary files
+matrix_mul_dpcpp
+matrix_mul_mkl
+matrix_mul_omp
+
+# Generate source file from .template
+src/matrix_mul_dpcpp.cpp
+src/matrix_mul_mkl.cpp
+
+# Job results
+*.sh.*
+
