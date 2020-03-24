@@ -1,5 +1,7 @@
 # Cuda2dpcpp
 
+*`devcloud_build.sh` requires special instruction!*
+
 ## `cudabin` usage
 
 ```bash
@@ -10,11 +12,13 @@
 
 * Makefile targets
   * all: Wrapper for target `main`.
-  * main: Used to create binary on devcloud. See `build.sh`.
+  * main: Used to create binary on devcloud. See `devcloud_build.sh`.
   * cudabin: Creates cuda binary to run on local GPU.
   * dpbin: Creates oneAPI binary to run on local machine.
 
-* Make all
+* Make main
+Works on the devcloud.
+
 ```bash
 make all
 ```
@@ -29,6 +33,9 @@ make cudabin
   `dpct_output/vector_add.dp.cpp`
     * How to generate it:
   `dpct --cuda-include-path=/path/to/cuda/include vector_add.cu`
+  * Prerequisite: cuda header files `include/`
+    * Unzip the `cuda10.1_include.tar`
+    * Properly set the path to the `include` folder.
   * Prerequisite: Properly set `LD_LIBRARY_PATH`
     * Should include path to the inteloneapi.
     * Typically
@@ -54,6 +61,9 @@ Malloc,VectorAdd,Memcpy,Free,VectorSize
 
 ### `devcloud_build.sh`
 Script used as a parameter to `qsub` on devcloud. Builds the `bin/vector_add`.
+1. Untar `cuda10.1_include.tar`.
+1. `--cuda-include-path=/path/to/IntelOneAPIExploration/cuda2dpcpp/include`
+Should be updated to the correct path.
 
 ### `devcloud_run.sh`
 Script used as a parameter to `qsub` on devcloud. Runs the `bin/vector_add`.
