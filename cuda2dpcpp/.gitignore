@@ -1,0 +1,10 @@
+# Don't add the include folder
+./include/
+
+# Intermediate result folders
+dpct_output/
+bin/
+
+# Generated binaries
+cudabin
+dpbin
