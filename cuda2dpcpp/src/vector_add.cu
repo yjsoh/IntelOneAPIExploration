@@ -40,9 +40,9 @@ int main(int argc, char *argv[])
 
     clock_gettime(CLOCK_MONOTONIC, &start);
 
-    assert(cudaMalloc(&d_A, vector_size*sizeof(float)) == cudaSuccess);
-    assert(cudaMalloc(&d_B, vector_size*sizeof(float)) == cudaSuccess);
-    assert(cudaMalloc(&d_C, vector_size*sizeof(float)) == cudaSuccess);
+    cudaMalloc(&d_A, vector_size*sizeof(float));
+    cudaMalloc(&d_B, vector_size*sizeof(float));
+    cudaMalloc(&d_C, vector_size*sizeof(float));
 
     lap;
 
@@ -50,11 +50,11 @@ int main(int argc, char *argv[])
         int threadsPerBlock = 256;
         int blocksPerGrid = (vector_size + threadsPerBlock - 1) / threadsPerBlock;
         VecAdd<<<blocksPerGrid, threadsPerBlock>>>(d_A, d_B, d_C, vector_size);
-        cudaError_t err = cudaGetLastError();
-        if (err != cudaSuccess) {
-            fprintf(stderr, "Error: %s\n", cudaGetErrorString(err));
-            break;
-        }
+        //cudaError_t err = cudaGetLastError();
+        //if (err != cudaSuccess) {
+        //    fprintf(stderr, "Error: %s\n", cudaGetErrorString(err));
+        //    break;
+        //}
     }
 
     lap;
